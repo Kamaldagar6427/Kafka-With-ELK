@@ -1,0 +1,15 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - "C:/Users/kamal/OneDrive/Desktop/Docker/auction.csv"
+output.kafka:
+  codec.format:
+    string: '%{[@timestamp]} %{[message]}'
+  hosts: ["localhost:9092"]
+  topic: cricket
+  partition.round_robin:
+    reachable_only: false
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
